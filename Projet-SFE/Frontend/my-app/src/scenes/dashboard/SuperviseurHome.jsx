@@ -1,0 +1,283 @@
+import { Box, Button, IconButton, Typography, useTheme, Tooltip } from "@mui/material";
+import { tokens } from "../../theme";
+import ProjectIcon from '@mui/icons-material/PlaylistAddCheck';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import Header from "../../components/Header";
+import SecteurProgrammes from "../../PieChart/SecteurProgrammes";
+import StatBox from "../../components/StatBox";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { getNbrPrjPrgPartUserforAdminSup, getNewlyCreatedProjet } from "../../utils/api";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import StatusProjetForAllProgrammes from "../../BARChart/StatusProjetForAllProgramme";
+import { getProgrammes } from "../../utils/api";
+
+
+
+const SuperviseurHome = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [data, setData] = useState(0);
+  const [programmesData, setProgrammesData] = useState([]);
+  const [newprojet, setNewprojet] = useState(0);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    getNbrPrjPrgPartUserforAdminSup()
+      .then((data) => setData(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    getNewlyCreatedProjet()
+      .then((projet) => setNewprojet(projet))
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProgrammes();
+        setProgrammesData(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Box m="20px">
+      {/* HEADER */}
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="Tableau de bord" subtitle="Bienvenue sur votre tableau de bord" />
+
+        <Box>
+          <Button
+            onClick={() => {
+              navigate("/SuperviseurDashboard/statistiques");
+            }}
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+          >
+            <AutoGraphIcon sx={{ mr: "10px" }} />
+            Statistiques
+          </Button>
+        </Box>
+      </Box>
+
+      {/* GRID & CHARTS */}
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(12, 1fr)"
+        gridAutoRows="140px"
+        gap="20px"
+      >
+        {/* ROW 1 */}
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={data.program_count}
+            subtitle="Total de programmes"
+            progress={data.program_count / 100}
+            increase=""
+            icon={
+              <AssignmentIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={data.project_count}
+            subtitle="Total de projets"
+            progress={data.project_count / 100}
+            increase=""
+            icon={
+              <ProjectIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={data.partner_count}
+            subtitle="Total de partenaires"
+            progress={data.partner_count / 100}
+            increase=""
+            icon={
+              <HandshakeIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={newprojet.count_new_projet}
+            subtitle=" Nouveaux projets"
+            progress={newprojet.count_new_projet / 100}
+            increase=""
+            icon={
+              <AutoGraphIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+
+
+        {/* ROW 2 */}
+        <Box
+          gridColumn="span 8"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          <Box
+            mt="25px"
+            p="0 30px"
+            display="flex "
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box>
+              <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.grey[100]}
+              >
+                Statut des projets pour l'ensemble des programmes
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+              >
+
+              </Typography>
+            </Box>
+            <Box>
+              <Tooltip title="Accéder à la page des Statistiques">
+                <IconButton onClick={() => {
+                  navigate("/SuperviseurDashboard/statistiques");
+                }}>
+                  <VisibilityIcon
+                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Box>
+          <Box height="250px" m="-20px 0 0 0">
+            <StatusProjetForAllProgrammes />
+          </Box>
+        </Box>
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          overflow="auto"
+        >
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            borderBottom={`4px solid ${colors.primary[500]}`}
+            color={colors.grey[100]}
+            p="15px"
+          >
+            <Typography variant="h5" fontWeight="600">
+              Vues d'ensemble des programmes
+            </Typography>
+          </Box>
+          {programmesData.map((programme) => (
+            <Box
+              key={programme.id}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              borderBottom={`4px solid ${colors.primary[500]}`}
+              p="15px"
+            >
+              <Box>
+                <Typography
+                  color={colors.greenAccent[500]}
+                  variant="h5"
+                  fontWeight="600"
+                >
+                  {programme.intitule_programme}
+                </Typography>
+                <Typography color={colors.grey[100]}>
+                  Nombre de projets: {programme.nombre_projets}
+                </Typography>
+              </Box>
+              <Box color={colors.grey[100]}>{programme.date_debut}</Box>
+              <Box
+                backgroundColor={colors.greenAccent[500]}
+                p="5px 10px"
+                borderRadius="4px"
+              >
+                {programme.cout_global} dh
+              </Box>
+            </Box>
+          ))}
+        </Box>
+
+        {/* ROW 3 */}
+        <Box
+          gridColumn="span 12"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ padding: "30px 30px 0 30px" }}
+          >
+            Répartition des secteurs dans l'ensemble des programmes
+          </Typography>
+          <Box height="270px" mt="-20px">
+            <SecteurProgrammes />
+          </Box>
+        </Box>
+
+
+      </Box>
+    </Box>
+  );
+};
+
+export default SuperviseurHome;
