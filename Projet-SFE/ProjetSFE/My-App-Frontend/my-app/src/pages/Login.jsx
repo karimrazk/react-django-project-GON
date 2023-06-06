@@ -8,13 +8,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {useTheme } from "@mui/material";
 import {  useContext } from 'react';
-import { tokens } from "../theme";
 import AuthContext from '../context/AuthContext';
 
 function Copyright(props) {
-  const theme = useTheme();
   
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,7 +28,6 @@ function Copyright(props) {
 
 const Login=()=> {
   let {loginUser}=useContext(AuthContext)
-  const theme = useTheme();
 
 
   return (

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { getDivisionDistribution } from "../utils/api";
 
 
-
 const DistributionDivisionADM = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

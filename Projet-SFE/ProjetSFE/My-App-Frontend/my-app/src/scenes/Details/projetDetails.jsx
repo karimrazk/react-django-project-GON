@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
-import { useContext } from 'react';
 import Header from "../../components/Header";
-import AuthContext from "../../context/AuthContext";
 import Wordfile from "../../components/Wordfile";
 import { Box, IconButton, Button, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, TextField, MenuItem, Select, InputLabel, FormControl, Tooltip, Typography } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from '../../theme';
 import { useState, useEffect } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,8 +18,6 @@ import ProjectDetails from './projetDataTable';
 const ProjetDetails = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { intitule_projet } = useParams();
-  const { user } = useContext(AuthContext)
   const [projetData, setProjetData] = useState([]);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);

@@ -43,7 +43,6 @@ const Calendar = () => {
     }
   };
 
- 
 
   const handleEventClick = async (selected) => {
     const action = prompt(
@@ -138,10 +137,6 @@ const Calendar = () => {
           backgroundColor={colors.primary[400]}
           p="15px"
           borderRadius="4px"
-        // height="100%"
-        // overflow="auto"
-
-
         >
           <Typography variant="h5">Événements</Typography>
           {currentEvents.length === 0 ? (

@@ -182,7 +182,6 @@ const AdminHome = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                {/* $59,342.32 */}
               </Typography>
             </Box>
             <Box>

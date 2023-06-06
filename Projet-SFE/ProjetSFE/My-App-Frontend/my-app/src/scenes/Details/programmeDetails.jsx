@@ -1,9 +1,8 @@
 import { MenuItem, Select, Box, Button, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid, IconButton, InputLabel, FormControl, Tooltip } from "@mui/material";
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import { useParams } from 'react-router-dom';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import AuthContext from "../../context/AuthContext";
 import moment from 'moment';
 import { tokens } from "../../theme";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -34,7 +33,6 @@ const ProgramDetails = () => {
   const navigate = useNavigate();
   const { id: id_programme, intitule_programme } = useParams();
   const [projectCount, setProjectCount] = useState([]);
-  const { user } = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const [selectedSecteur, setSelectedSecteur] = useState("");
   const [SelectedStatusEtude, setSelectedStatusEtude] = useState("");
@@ -114,7 +112,7 @@ const ProgramDetails = () => {
         }
 
       }
-    } else alert("****La date de début ne peut pas être supérieure à la date de fin");
+    } else alert("La date de début ne peut pas être supérieure à la date de fin");
   };
 
   const handleDeleteProj = (id) => {
@@ -510,7 +508,6 @@ const ProgramDetails = () => {
             title={projectCount.count_all}
             subtitle="Nombre de projets"
             progress={projectCount.count_all / 100}
-            // increase="+14%"
             icon={
               <BusinessCenterIcon
                 sx={{ color: colors.greenAccent[400], fontSize: "26px" }}
@@ -529,7 +526,6 @@ const ProgramDetails = () => {
             title={projectCount.count_en_cours_demarrage}
             subtitle="En cours de démarrage"
             progress={projectCount.count_en_cours_demarrage / 100}
-            // increase="+5%"
             icon={
               <RestartAltIcon
                 sx={{ color: colors.greenAccent[400], fontSize: "26px" }}
@@ -548,7 +544,6 @@ const ProgramDetails = () => {
             title={projectCount.count_planifie}
             subtitle="Planifié"
             progress={projectCount.count_planifie / 100}
-            // increase="+21%"
             icon={
               <QueryStatsIcon
                 sx={{ color: colors.greenAccent[400], fontSize: "26px" }}
@@ -568,7 +563,6 @@ const ProgramDetails = () => {
             title={projectCount.count_en_cours_realisation}
             subtitle="En cours de réalisation"
             progress={projectCount.count_en_cours_realisation / 100}
-            // increase="+5%"
             icon={
               <EventRepeatIcon
                 sx={{ color: colors.greenAccent[400], fontSize: "26px" }}
@@ -587,7 +581,6 @@ const ProgramDetails = () => {
             title={projectCount.count_achevee}
             subtitle="Achevée"
             progress={projectCount.count_achevee / 100}
-            // increase="+43%"
             icon={
               <VerifiedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -606,7 +599,6 @@ const ProgramDetails = () => {
             title={moyenne && moyenne.moyenne_taux_avancement ? moyenne.moyenne_taux_avancement.toFixed(2) : 0}
             subtitle="Taux d'avancement"
             progress={moyenne.moyenne_taux_avancement / 100}
-            // increase={`${moyenne.moyenne_taux_avancement}%`}
             icon={
               <AutoGraphIcon
                 sx={{ color: colors.greenAccent[400], fontSize: "26px" }}

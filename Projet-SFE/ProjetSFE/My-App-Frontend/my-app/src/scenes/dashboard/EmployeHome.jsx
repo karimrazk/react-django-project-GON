@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme, Tooltip } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { useState, useEffect, useContext } from 'react';
 import Header from "../../components/Header";
@@ -244,7 +244,6 @@ const EmployeHome = () => {
                   Taux d'avancement: {project.taux_davancement}%
                 </Typography>
               </Box>
-              {/* <Box color={colors.grey[100]}> {project.date_fin_reel}</Box> */}
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"

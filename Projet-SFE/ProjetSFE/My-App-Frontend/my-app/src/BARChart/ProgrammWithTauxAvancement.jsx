@@ -6,8 +6,6 @@ import { get_programmes_with_tauxavancement } from "../utils/api";
 
 
 
-
-
 const ProgrammeWithTauxAvancement = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

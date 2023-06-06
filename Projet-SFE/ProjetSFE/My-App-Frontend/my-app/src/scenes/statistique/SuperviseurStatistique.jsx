@@ -1,6 +1,6 @@
 import { Box, useTheme, Typography, InputLabel, FormControl, MenuItem, Select } from "@mui/material";
 import { tokens } from "../../theme";
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import { getProgrammes, getProjectsByProgramme } from "../../utils/api";
 import ProgrammeWithTauxAvancement from "../../BARChart/ProgrammWithTauxAvancement";
@@ -107,7 +107,7 @@ const SuperviseurStatistique = () => {
                     </FormControl>
                 </Box>
                 {!selectedProgramme && (
-                    
+
                     <Box
                         gridColumn="span 12"
                         gridRow="span 3"
@@ -115,13 +115,13 @@ const SuperviseurStatistique = () => {
                         p="30px"
                     >
                         <Typography variant="h5" fontWeight="600">
-                        Répartition des programmes par nombre de projets
+                            Répartition des programmes par nombre de projets
                         </Typography>
                         <ProgrammesWithNombreProj />
                     </Box>
                 )}
                 {!selectedProgramme && (
-                    
+
                     <Box
                         gridColumn="span 12"
                         gridRow="span 3"
@@ -129,13 +129,13 @@ const SuperviseurStatistique = () => {
                         p="30px"
                     >
                         <Typography variant="h5" fontWeight="600">
-                        Statut des projets pour l'ensemble des programmes
+                            Statut des projets pour l'ensemble des programmes
                         </Typography>
                         <StatusProjetForAllProgrammes />
                     </Box>
                 )}
                 {!selectedProgramme && (
-                    
+
                     <Box
                         gridColumn="span 12"
                         gridRow="span 3"
@@ -148,8 +148,8 @@ const SuperviseurStatistique = () => {
                         <ProgrammeWithTauxAvancement />
                     </Box>
                 )}
-                 {!selectedProgramme && (
-                    
+                {!selectedProgramme && (
+
                     <Box
                         gridColumn="span 12"
                         gridRow="span 3"
@@ -157,7 +157,7 @@ const SuperviseurStatistique = () => {
                         p="30px"
                     >
                         <Typography variant="h5" fontWeight="600">
-                        Répartition des secteurs dans l'ensemble des programmes
+                            Répartition des secteurs dans l'ensemble des programmes
                         </Typography>
                         <SecteurProgrammes />
                     </Box>
@@ -229,13 +229,7 @@ const SuperviseurStatistique = () => {
                         <PartnerContrProjetChart id_projet={selectedProjet} id_programme={selectedProgramme} />
                     </Box>
                 )}
-
-
-
-
-
-
-            </Box>
+                </Box>
         </Box>
 
     );

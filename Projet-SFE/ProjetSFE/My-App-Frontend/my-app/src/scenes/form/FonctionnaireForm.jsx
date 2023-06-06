@@ -13,7 +13,6 @@ import { useSnackbar } from 'notistack';
 const FormFonctionnaire = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { id: id_fonctionnaire} = useParams();
-  const [User, setUser] = useState([]);
   const [fonctionnaireData, setFonctionnaireData] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -223,7 +222,6 @@ const checkoutSchema = yup.object().shape({
   service: yup.string().required("Requis"),
   division: yup.string().required("Requis"),
   role: yup.string().required("Requis"),
-//   password: yup.string().required("requis"),
   password: yup.string()
   .required("Requis")
   .min(8, "Le mot de passe est trop court - il doit contenir au moins 8 caractères!"),

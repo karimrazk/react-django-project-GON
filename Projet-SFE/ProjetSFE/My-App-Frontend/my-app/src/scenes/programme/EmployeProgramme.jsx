@@ -1,5 +1,5 @@
 import { Box, useTheme } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, Tooltip } from "@mui/material";
 import { tokens } from "../../theme";
 import { useState, useEffect, useContext } from 'react';

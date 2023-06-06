@@ -7,8 +7,6 @@ import AuthContext from "../context/AuthContext";
 
 
 
-
-
 const StatusProjetChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

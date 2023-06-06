@@ -188,8 +188,6 @@ const SidebarEmploye = () => {
             >
               <Typography>Se déconnecter</Typography>
             </MenuItem>
-
-
           </Box>
         </Menu>
       </ProSidebar>

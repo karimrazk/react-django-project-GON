@@ -1,8 +1,7 @@
-import { Box, useTheme, Typography, TextField, InputLabel, FormControl, MenuItem, Select } from "@mui/material";
+import { Box, useTheme, Typography, InputLabel, FormControl, MenuItem, Select } from "@mui/material";
 import { tokens } from "../../theme";
 import { useState, useEffect, useContext } from 'react';
 import Header from "../../components/Header";
-import { useNavigate } from 'react-router-dom';
 import { getProgrammesForEMP, getProjectsByProgramme } from "../../utils/api";
 import AuthContext from "../../context/AuthContext";
 import SecteurProgrammesUser from "../../PieChart/SecteurProgrammesUser";
@@ -14,7 +13,6 @@ import StatusProjetChart from "../../BARChart/StatutProjChart";
 const EmployeStatistique = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const navigate = useNavigate();
     const { user } = useContext(AuthContext)
     const [listprogrammesName, setlistprogrammesName] = useState([]);
     const [selectedProgramme, setSelectedProgramme] = useState("");
@@ -74,7 +72,7 @@ const EmployeStatistique = () => {
                     p="30px"
                 >
                     <Typography variant="h5" fontWeight="600">
-                    Veuillez sélectionner un programme pour afficher ses statistiques
+                        Veuillez sélectionner un programme pour afficher ses statistiques
                     </Typography>
                     <FormControl fullWidth variant="filled" style={{ marginTop: '16px' }}>
                         <InputLabel id="programme-select">Programme</InputLabel>
@@ -103,7 +101,7 @@ const EmployeStatistique = () => {
                         p="30px"
                     >
                         <Typography variant="h5" fontWeight="600">
-                        Répartition des statuts des projets pour vos programmes
+                            Répartition des statuts des projets pour vos programmes
                         </Typography>
                         <StatusProjetChart />
                     </Box>
@@ -131,7 +129,7 @@ const EmployeStatistique = () => {
                         <Typography variant="h5" fontWeight="600">
                             Statut des projets pour le programme {selectedProgrammeName}
                         </Typography>
-                        <StatusProjetByProgramme id_programme={selectedProgramme}/>
+                        <StatusProjetByProgramme id_programme={selectedProgramme} />
 
                     </Box>
                 )}
@@ -145,7 +143,7 @@ const EmployeStatistique = () => {
                         p="30px"
                     >
                         <Typography variant="h5" fontWeight="600">
-                        Sélectionnez un projet
+                            Sélectionnez un projet
                         </Typography>
                         {listprojetsName.length === 0 ? (
                             <Typography variant="body1">Aucun projet disponible pour ce programme.</Typography>
@@ -184,15 +182,9 @@ const EmployeStatistique = () => {
                         <Typography variant="h5" fontWeight="600">
                             Contribution des partenaires
                         </Typography>
-                        <PartnerContrProjetChart  id_projet={selectedProjet} id_programme={selectedProgramme} />
+                        <PartnerContrProjetChart id_projet={selectedProjet} id_programme={selectedProgramme} />
                     </Box>
                 )}
-
-
-
-
-
-
             </Box>
         </Box>
 

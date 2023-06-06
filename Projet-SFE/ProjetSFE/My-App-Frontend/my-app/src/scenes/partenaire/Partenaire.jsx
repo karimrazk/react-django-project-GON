@@ -1,5 +1,5 @@
 import { Box, Button, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, TextField, IconButton, Tooltip } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
@@ -15,7 +15,6 @@ const Partenaire = () => {
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
-  const [editingData, setEditingData] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
 
 
@@ -148,8 +147,7 @@ const Partenaire = () => {
           >
             <Dialog open={open}
               onClose={handleClose}
-            >{/* PaperProps={{ style: {backgroundColor:  colors.blueAccent[900],color: colors.grey[100], } }} */}
-
+            >
               <DialogTitle variant="h5" color="secondary">Ajouter un nouveau partenaire</DialogTitle>
               <DialogContent>
                 <form onSubmit={handleSubmit}>
@@ -175,7 +173,6 @@ const Partenaire = () => {
       <Box
         m="40px 0 0 0"
         height="75vh"
-        // maxWidth="500px"
         sx={{
 
           "& .MuiDataGrid-root": {

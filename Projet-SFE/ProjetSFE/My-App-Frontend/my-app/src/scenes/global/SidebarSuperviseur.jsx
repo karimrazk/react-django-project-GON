@@ -42,7 +42,6 @@ const SidebarSuperviseur = () => {
   function stringAvatar() {
     return {
       sx: {
-        // background: `${colors.grey[400]}`,
         backgroundColor: '#009688',
         
       },

@@ -1,16 +1,14 @@
 import { ResponsivePie } from "@nivo/pie";
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState } from "react";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
 import { getSecteurforAllProgramme } from "../utils/api";
-import AuthContext from "../context/AuthContext";
 
 
 const SecteurProgrammes = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
-  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     const fetchData = async () => {

@@ -445,10 +445,6 @@ const checkoutSchema = yup.object().shape({
   statue_projet: yup.string().required("Requis"),
   observation: yup.string().required("Requis"),
   programme: yup.string().required("Requis"),
-
-
-
-  // email: yup.string().email("invalid email").required("required"),
 });
 
 

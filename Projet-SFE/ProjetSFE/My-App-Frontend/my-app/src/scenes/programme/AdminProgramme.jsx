@@ -1,6 +1,6 @@
 import { Box, Button, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, TextField, IconButton, InputLabel, FormControl, MenuItem, Select, ListItemText, OutlinedInput, Checkbox, Tooltip } from "@mui/material";
 import moment from 'moment';
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
@@ -12,7 +12,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import { getUsersEMPLOYE, addProgramme, getProgrammes, deleteProgramme } from "../../utils/api";
 import EditIcon from '@mui/icons-material/Edit';
-import SaveIcon from '@mui/icons-material/Save';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -200,8 +199,6 @@ const ProgrammeADM = () => {
             <Dialog open={open}
               onClose={handleClose} 
             >
-              {/* PaperProps={{ style: {backgroundColor:  colors.blueAccent[900],color: colors.grey[100], } }} */}
-
               <DialogTitle variant="h5" color="secondary">Ajouter un nouveau programme</DialogTitle>
               <DialogContent >
                 <form onSubmit={handleSubmit}>
@@ -266,7 +263,6 @@ const ProgrammeADM = () => {
                           }).join(", ")
                           : ""
                       }
-
                     >
                       {listUser.map((user) => (
                         <MenuItem key={user.id} value={user.id}>

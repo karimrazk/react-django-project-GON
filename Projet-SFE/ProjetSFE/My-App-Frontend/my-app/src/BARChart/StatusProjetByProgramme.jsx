@@ -6,8 +6,6 @@ import { getcountStatusProjetByProgramme } from "../utils/api";
 
 
 
-
-
 const StatusProjetByProgramme = ({ isDashboard = false,id_programme }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -62,9 +60,6 @@ const StatusProjetByProgramme = ({ isDashboard = false,id_programme }) => {
 
   if (!data || data.length === 0) {
     return (
-      // <Box p={2}>
-      //   <Typography variant="body1">Aucune contribution n'a été effectuée pour ce projet.</Typography>
-      // </Box>
       null
     );
   }

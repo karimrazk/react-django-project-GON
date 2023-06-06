@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Page404 from "./pages/Page404";
@@ -34,7 +34,6 @@ function App() {
                 <Route element={<PrivateRoutes allowedRoles={["SUPERVISEUR"]} />}>
                   <Route path="/SuperviseurDashboard/*" element={<SuperviseurDashboard />} />
                 </Route>
-              
                 <Route path="*" element={<Page404 />} />
               </Routes>
             </main>
