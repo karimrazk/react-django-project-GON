@@ -1,0 +1,24 @@
+-->install Python version 3.11.2	
+
+-->install the virtual environment
+	pip install virtualenv
+
+-->create an evn
+	virtualenv my_env
+
+-->activate the env
+	my_env\Scripts\activate
+
+-->install django 
+	pip install django
+
+-->create django project
+	django-admin startproject my_project
+
+-->create django app
+	python manage.py startapp myapp	
+
+-->deactivate the env
+	deactivate
+
+
