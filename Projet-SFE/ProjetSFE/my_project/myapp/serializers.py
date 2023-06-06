@@ -32,9 +32,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     moa=serializers.CharField(required=True)
     statue_etude=serializers.CharField(required=True)
     statue_projet=serializers.CharField(required=True)
-    # engagemet=serializers.IntegerField(required=True)
-    # paiement=serializers.IntegerField(validators=[MinValueValidator(0)],required=True)
-    # taux_davancement=serializers.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(100)],required=True)
     programme = serializers.PrimaryKeyRelatedField(queryset=Programme.objects.all(), required=True)
     class Meta:
         model = Projet
@@ -55,8 +52,6 @@ class ParticipationSerializer(serializers.ModelSerializer):
 
 
 class PartenaireSerializer(serializers.ModelSerializer):
-    # projets = ParticipationSerializer(many=True, read_only=True)
-
     class Meta:
         model = Partenaire
         fields = ('id', 'nom')
@@ -67,7 +62,6 @@ class ParticipationByProjAndProg(serializers.ModelSerializer):
     projet = ProjectSerializer()
     partenaire = PartenaireSerializer()
     contribution = serializers.DecimalField(max_digits=19, decimal_places=2)
-
     class Meta:
         model = Participation
         fields = ['id', 'projet', 'partenaire', 'contribution']
@@ -92,8 +86,6 @@ class ListParticipationSerializer(serializers.ModelSerializer):
 
 class ProgrammeSerializer(serializers.ModelSerializer):
     projects = ProjectSerializer(many=True, read_only=True)
-    # users = UserSerializer(many=True)
-    
     class Meta:
         model = Programme
         fields = '__all__'
@@ -102,9 +94,6 @@ class ProgrammeSerializer(serializers.ModelSerializer):
 
 class ProjectUserSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='projet.id')
-    # projet = ProjectSerializer()
-    # program = serializers.SerializerMethodField()
-
     intitule_projet = serializers.CharField(source='projet.intitule_projet')
     localisation = serializers.CharField(source='projet.localisation')
     date_debut_previsionnelle = serializers.DateField(source='projet.date_debut_previsionnelle')

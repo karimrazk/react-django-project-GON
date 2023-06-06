@@ -38,10 +38,6 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
-
-
-
-
 class Programme(models.Model):
     users = models.ManyToManyField(User, related_name='projects')
     intitule_programme=models.CharField(max_length=900)  
@@ -76,9 +72,7 @@ class Projet(models.Model):
         ('Agriculture','Agriculture'),
         ('Economie sociale','Economie sociale'),
     ]
-
     programme=models.ForeignKey(Programme, on_delete = models.CASCADE,null=True)
-
     intitule_projet=models.CharField(max_length=1000,null=True) 
     localisation=models.CharField(max_length=1000) 
     date_debut_previsionnelle=models.DateField(null=True)
@@ -96,15 +90,12 @@ class Projet(models.Model):
     secteur=models.CharField(max_length=90,choices=SECTEUR,default='Tourisme')
     observation=models.TextField(null=True) 
     date_created = models.DateTimeField(default=timezone.now)
-
-
     def __str__(self):
         return self.intitule_projet
     
 
 
 class Partenaire(models.Model):
-
     nom=models.CharField(max_length=90,null=False)
     projets = models.ManyToManyField(Projet, through='Participation')
     def __str__(self):
